@@ -1,0 +1,13 @@
+https://blog.csdn.net/qq_20373723/article/details/122336778
+按照此处安装kalidokit
+
+doc/目录下的index.html和script.js替换
+然后到主目录
+npm run test
+运行动作捕捉终端
+
+
+node socket.js 
+单独运行socket服务器
+
+unity工程在master分支下
