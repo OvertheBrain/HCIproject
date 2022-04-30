@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BestHTTP", "BestHTTP.csproj", "{32670328-73de-8e52-c752-10213add3aea}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{175fa7df-29a8-89d9-2591-66dac1548379}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{b439e8b3-9d6f-9664-9ce7-f6db6c1ea314}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{32670328-73de-8e52-c752-10213add3aea}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32670328-73de-8e52-c752-10213add3aea}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{175fa7df-29a8-89d9-2591-66dac1548379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{175fa7df-29a8-89d9-2591-66dac1548379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{b439e8b3-9d6f-9664-9ce7-f6db6c1ea314}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{b439e8b3-9d6f-9664-9ce7-f6db6c1ea314}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
