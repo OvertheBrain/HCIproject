@@ -230,7 +230,7 @@ MonoBehaviour:
   IndexMax: 1
   UseIndex: 0
   ParamName: Start
-  Loop: 1
+  Loop: 0
 --- !u!1 &160438
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,4 +35,9 @@ public class TGUtilsAnimatorPeriodParam : MonoBehaviour {
 		}
 	}
 
+	public void Launch()
+    {
+		Invoke("ChangeParam", 0);
+	}
+
 }
