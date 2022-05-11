@@ -84,28 +84,27 @@ function animate() {
 animate();
 
 /* VRM CHARACTER SETUP */
-
 // Import Character VRM
-const loader = new THREE.GLTFLoader();
-loader.crossOrigin = "anonymous";
-// Import model from URL, add your own model here
-loader.load(
-    "https://yeemachine.github.io/k2021/vrm/VAL.vrm",
+// const loader = new THREE.GLTFLoader();
+// loader.crossOrigin = "anonymous";
+// // Import model from URL, add your own model here
+// loader.load(
+//     "https://yeemachine.github.io/k2021/vrm/VAL.vrm",
 
-    (gltf) => {
-        THREE.VRMUtils.removeUnnecessaryJoints(gltf.scene);
+//     (gltf) => {
+//         THREE.VRMUtils.removeUnnecessaryJoints(gltf.scene);
 
-        THREE.VRM.from(gltf).then((vrm) => {
-            scene.add(vrm.scene);
-            currentVrm = vrm;
-            currentVrm.scene.rotation.y = Math.PI; // Rotate model 180deg to face camera
-        });
-    },
+//         THREE.VRM.from(gltf).then((vrm) => {
+//             scene.add(vrm.scene);
+//             currentVrm = vrm;
+//             currentVrm.scene.rotation.y = Math.PI; // Rotate model 180deg to face camera
+//         });
+//     },
 
-    (progress) => console.log("Loading model...", 100.0 * (progress.loaded / progress.total), "%"),
+//     (progress) => console.log("Loading model...", 100.0 * (progress.loaded / progress.total), "%"),
 
-    (error) => console.error(error)
-);
+//     (error) => console.error(error)
+// );
 
 // Animate Rotation Helper function
 const rigRotation = (name, rotation = { x: 0, y: 0, z: 0 }, dampener = 1, lerpAmount = 0.3) => {
@@ -179,9 +178,9 @@ const rigFace = (riggedFace) => {
 
 /* VRM Character Animator */
 const animateVRM = (vrm, results) => {
-    if (!vrm) {
-        return;
-    }
+    // if (!vrm) {
+    //     return;
+    // }
     // Take the results from `Holistic` and animate character based on its Face, Pose, and Hand Keypoints.
     let riggedPose, riggedLeftHand, riggedRightHand, riggedFace;
 
@@ -194,17 +193,18 @@ const animateVRM = (vrm, results) => {
     const leftHandLandmarks = results.rightHandLandmarks;
     const rightHandLandmarks = results.leftHandLandmarks;
 
-    // Animate Face
-    if (faceLandmarks) {
+ 
+   
+
+    // Animate Pose
+    if (faceLandmarks&& pose2DLandmarks && pose3DLandmarks) {
         riggedFace = Kalidokit.Face.solve(faceLandmarks, {
             runtime: "mediapipe",
             video: videoElement,
         });
         rigFace(riggedFace);
-    }
 
-    // Animate Pose
-    if (pose2DLandmarks && pose3DLandmarks) {
+
         riggedPose = Kalidokit.Pose.solve(pose3DLandmarks, pose2DLandmarks, {
             runtime: "mediapipe",
             video: videoElement,
@@ -236,7 +236,13 @@ const animateVRM = (vrm, results) => {
 
         //console.log(riggedPose);
 
+        //transporting
         let t={}
+        t.Head={};
+        t.Head.x=riggedFace.head.x;
+        t.Head.y=riggedFace.head.y;
+        t.Head.z=riggedFace.head.z;
+        t.Spine=riggedPose.Spine;
         t.RightUpperArm=riggedPose.RightUpperArm;
         t.RightLowerArm=riggedPose.RightLowerArm;
         t.LeftUpperArm=riggedPose.LeftUpperArm;
