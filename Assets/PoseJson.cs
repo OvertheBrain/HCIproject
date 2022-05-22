@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PoseJson
 {
-    public PosJson RightUpperArm,RightLowerArm,LeftUpperArm,LeftLowerArm;
+    public PosJson Head,Spine,RightUpperArm,RightLowerArm,LeftUpperArm,LeftLowerArm;
 
 }
 

@@ -7,35 +7,30 @@ public class RobotController : MonoBehaviour
 {
     
     // Start is called before the first frame update
-    public GameObject RightUpperArm,RightLowerArm,LeftUpperArm,LeftLowerArm;
+    public GameObject Head,Body,RightUpperArm,RightLowerArm,LeftUpperArm,LeftLowerArm;
 
     public Quaternion ru,rl,lu,ll;
     public void init(){
-        ru=RightUpperArm.transform.localRotation;
-        rl=RightLowerArm.transform.localRotation;
-        lu=LeftUpperArm.transform.localRotation;
-        ll=LeftLowerArm.transform.localRotation;
+        
     }
-    
-    public Quaternion change(PosJson j,Quaternion k){
-        Quaternion q=new Quaternion(0,0,0,0);
-        q.x=j.x+k.x;
-        q.y=j.y+k.y;
-        q.z=j.z+k.z;
+    public float motionscale=0f;
+    public Quaternion EulerVariation(PosJson j,Quaternion k){
+        Quaternion q=Quaternion.Euler(j.x*motionscale+k.x,j.y*motionscale+k.y,j.z*motionscale+k.z);
+        
         return q;
 
     }
 
+
     public void UpdatePose(PoseJson pose){
         
-        pose.RightUpperArm.z+=1.25f;
-        pose.LeftUpperArm.z-=1.25f;
-        pose.RightLowerArm.y+=1.25f;
-        RightUpperArm.transform.localRotation=change(pose.RightUpperArm,ru);
-        RightLowerArm.transform.localRotation=change(pose.RightLowerArm,rl);
+        Head.transform.localRotation=Quaternion.Euler(pose.Head.x*0.7f*motionscale,pose.Head.y*0.7f*motionscale,pose.Head.z*0.7f*motionscale);
+        Body.transform.localRotation=Quaternion.Euler(pose.Spine.x*0.0f*motionscale,pose.Spine.y*0.3f*motionscale,pose.Spine.z*0.0f*motionscale);
+        RightUpperArm.transform.localRotation=EulerVariation(pose.RightUpperArm,ru);
+        RightLowerArm.transform.localRotation=EulerVariation(pose.RightLowerArm,rl);
         
-        LeftUpperArm.transform.localRotation=change(pose.LeftUpperArm,lu);
-        LeftLowerArm.transform.localRotation=change(pose.LeftLowerArm,ll);
+        LeftUpperArm.transform.localRotation=EulerVariation(pose.LeftUpperArm,lu);
+        LeftLowerArm.transform.localRotation=EulerVariation(pose.LeftLowerArm,ll);
         
 
 

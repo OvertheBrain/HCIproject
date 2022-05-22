@@ -83,7 +83,7 @@ public class wsmgr : MonoBehaviour {
     /// </summary>
     void OnMessageReceived(WebSocket ws, string message)
     {
-        Debug.Log(message);
+        //Debug.Log(message);
         PoseJson pose= JsonConvert.DeserializeObject<PoseJson>(message);
         
         // if(pose!=null)
