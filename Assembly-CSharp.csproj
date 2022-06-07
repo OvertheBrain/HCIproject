@@ -58,10 +58,19 @@
     <Compile Include="Assets\Scripts\Alert\AlerController.cs" />
     <Compile Include="Assets\Scripts\Alert\AlertCreator.cs" />
     <Compile Include="Assets\Scripts\Alert\FeverWarning.cs" />
+    <Compile Include="Assets\Scripts\Alert\JumpController.cs" />
+    <Compile Include="Assets\Scripts\Effects\Bloom.cs" />
     <Compile Include="Assets\Scripts\Effects\ConfettiController.cs" />
+    <Compile Include="Assets\Scripts\Effects\FrontLightsController.cs" />
+    <Compile Include="Assets\Scripts\Effects\PanelController.cs" />
+    <Compile Include="Assets\Scripts\Effects\PostEffectBase.cs" />
+    <Compile Include="Assets\Scripts\Effects\SpinLightsController.cs" />
+    <Compile Include="Assets\Scripts\Effects\StageLightsController.cs" />
+    <Compile Include="Assets\Scripts\Game\ActionController.cs" />
+    <Compile Include="Assets\Scripts\Game\JumpGameController.cs" />
+    <Compile Include="Assets\Scripts\Game\PersonalGameController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MusicGameController.cs" />
-    <Compile Include="Assets\Scripts\PersonalGameController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\CeilingController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\FlameController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\SmokeController.cs" />
@@ -334,6 +343,7 @@
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\audio_output\libamem_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\mux\libmux_ps_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\video_chroma\libi422_i420_plugin.dll" />
+    <None Include="Assets\Resources\Shaders\Fever.shader" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\access\libhttp_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\access\libhttps_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\video_filter\libcolorthres_plugin.dll" />
@@ -1253,11 +1263,23 @@
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Animation.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Path.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Path.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
@@ -1265,14 +1287,56 @@
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.2D.Animation.Triangle.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="PsdPlugin">
+      <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Psdimporter.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEngineBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Sprite.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Tilemap.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.SpriteShape.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.PixelPerfect">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Animation.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.2D.Common.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InternalAPIEditorBridge.001">
+      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PlasticSCM.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>

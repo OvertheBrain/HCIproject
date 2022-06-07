@@ -22,18 +22,24 @@ public class SpotsController : MonoBehaviour
     {
         on = !on;
         if (on)
-        {
-            for(int i=0; i<lights.Count; i++)
-            {
-                lights[i].SetActive(true);
-            }
-        }
+            turnOn();
         else
+            turnOff();
+    }
+
+    public void turnOn()
+    {
+        foreach (GameObject light in lights)
         {
-            for (int i = 0; i < lights.Count; i++)
-            {
-                lights[i].SetActive(false);
-            }
+            light.SetActive(true);
+        }
+    }
+
+    public void turnOff()
+    {
+        foreach (GameObject light in lights)
+        {
+            light.SetActive(false);
         }
     }
 }

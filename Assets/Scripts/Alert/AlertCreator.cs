@@ -11,7 +11,11 @@ public class AlertCreator : MonoBehaviour
 
     public InputField inputTime;
     public InputField inputHotness;
+    public InputField inputDuration;
+    public Dropdown Mode;
+
     public GameObject UI;
+    public GameObject UI2;
 
     public GameObject canvas;
     void Start()
@@ -28,14 +32,29 @@ public class AlertCreator : MonoBehaviour
 
     public void CreateAlert()
     {
-        if (GameManager.instance.isAlerting) return;
+        int mode = Mode.GetComponent<Dropdown>().value;
 
-        GameObject Alert = Instantiate(UI, new Vector3(0, 0, 0), Quaternion.identity);
-        Alert.transform.SetParent(canvas.transform, false);
-        Alert.GetComponent<AlerController>().time = time;
-        Alert.GetComponent<AlerController>().hotness = hotness;
+        if (mode == 0 && !GameManager.instance.isJumping) {
+            if (GameManager.instance.isAlerting) return;
 
-        GameManager.instance.isAlerting = true;
+            GameObject Alert = Instantiate(UI, new Vector3(0, 0, 0), Quaternion.identity);
+            Alert.transform.SetParent(canvas.transform, false);
+            Alert.GetComponent<AlerController>().time = time;
+            Alert.GetComponent<AlerController>().hotness = hotness;
+
+            GameManager.instance.isAlerting = true; 
+        }
+        else if(mode == 1 && !GameManager.instance.isAlerting)
+        {
+            if (GameManager.instance.isJumping) return;
+
+            GameObject JumpAlert = Instantiate(UI2, new Vector3(0, 0, 0), Quaternion.identity);
+            JumpAlert.transform.SetParent(canvas.transform, false);
+            JumpAlert.GetComponent<JumpController>().time = time;
+            GameManager.instance.jumpBoundary = hotness;
+
+            GameManager.instance.isJumping = true;
+        }
     }
 
     public void EditTime()
@@ -46,5 +65,10 @@ public class AlertCreator : MonoBehaviour
     public void EditHotness()
     {
         hotness = int.Parse(inputHotness.text);
+    }
+
+    public void EditDuration()
+    {
+        GameManager.instance.FeverDuration = float.Parse(inputDuration.text);
     }
 }

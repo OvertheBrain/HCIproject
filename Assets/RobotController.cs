@@ -10,6 +10,10 @@ public class RobotController : MonoBehaviour
     public GameObject Head,Body,RightUpperArm,RightLowerArm,LeftUpperArm,LeftLowerArm;
 
     public Quaternion ru,rl,lu,ll;
+
+    public bool isJumping = false;
+    public bool ground = true;
+    private float mJumpSpeed = 100f;
     public void init(){
         
     }
@@ -33,7 +37,31 @@ public class RobotController : MonoBehaviour
         LeftLowerArm.transform.localRotation=EulerVariation(pose.LeftLowerArm,ll);
         
 
+    }
 
+    private void FixedUpdate()
+    {
+        //跳跃
+        if (isJumping)
+        {
+            if (ground == true)
+            {
+                //transform.Translate(new Vector3(Input.GetAxis("Horizontal")*distance, 2, Input.GetAxis("Vertical")*distance));
+                GetComponent<Rigidbody>().velocity += new Vector3(0, 5, 0);
+                GetComponent<Rigidbody>().AddForce(Vector3.up * mJumpSpeed, ForceMode.Impulse);
+                ground = false;
+                Debug.Log("I am jumping");
+                //isJumping = false;
+            }
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Ground"))
+        {
+            ground = true;
+        }
     }
 
 }

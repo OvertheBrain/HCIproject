@@ -26,6 +26,7 @@ public class CeilingController : MonoBehaviour
     {
         for (int i = 0; i < lasers.Count; i++)
         {
+            lasers[i].GetComponent<AudioSource>().Play();
             LaserAnim[i].SetTrigger("Laser");
         }
     }

@@ -12,18 +12,17 @@ public class AlerController : MonoBehaviour
 
     public GameObject TimeBar;
     public GameObject HotenessBar;
+    public GameObject Circles;
     public Text Warning;
     public Text TimeNumber;
 
     private float currentTime = 0;
-    public int currentHotness = 0;
 
     // Start is called before the first frame update
     
     void Start()
     {
         currentTime = 0;
-        currentHotness = 0;
     }
 
     // Update is called once per frame
@@ -35,9 +34,14 @@ public class AlerController : MonoBehaviour
         {
             EndWithFever();
         }
-        if(currentHotness >= hotness)
+        if(GameManager.instance.currentHotness >= hotness)
         {
             FeverAlert();
+        }
+
+        if (GameManager.instance.isHiting)
+        {
+            HitTap();
         }
     }
 
@@ -50,17 +54,21 @@ public class AlerController : MonoBehaviour
 
     void HotnessUpdate()
     {
-        HotenessBar.GetComponent<Slider>().value = ((float)currentHotness) / ((float)hotness);
+        HotenessBar.GetComponent<Slider>().value = ((float)GameManager.instance.currentHotness) / ((float)hotness);
     }
 
-    void HitTap()
+    public void HitTap()
     {
-
+        Animator anim = Circles.GetComponent<Animator>();
+        anim.SetTrigger("Hit");
+        GameManager.instance.currentHotness += 5;
+        GameManager.instance.isHiting = false;
     }
 
     void EndWithFever()
     {
-        if(currentHotness < hotness) {
+        if(GameManager.instance.currentHotness < hotness) {
+            GameManager.instance.Alert2Normal();
             this.gameObject.SetActive(false);
             Destroy(this.gameObject, 2f);
         }

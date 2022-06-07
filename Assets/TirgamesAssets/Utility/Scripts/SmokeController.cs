@@ -26,6 +26,8 @@ public class SmokeController : MonoBehaviour
     {
         for (int i = 0; i < smokes.Count; i++)
         {
+            AudioSource sound = smokes[i].GetComponent<AudioSource>();
+            sound.Play();
             SmokeEditor[i].Play();
         }
     }
