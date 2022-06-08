@@ -17,12 +17,15 @@ public class AlerController : MonoBehaviour
     public Text TimeNumber;
 
     private float currentTime = 0;
+    private AudioSource FeverSound;
+    private bool isPlayed = false;
 
     // Start is called before the first frame update
     
     void Start()
     {
         currentTime = 0;
+        FeverSound = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -37,11 +40,13 @@ public class AlerController : MonoBehaviour
         if(GameManager.instance.currentHotness >= hotness)
         {
             FeverAlert();
+            if (!isPlayed)
+                playFeverSound();
         }
 
         if (GameManager.instance.isHiting)
         {
-            HitTap();
+            HitTap();       
         }
     }
 
@@ -76,6 +81,8 @@ public class AlerController : MonoBehaviour
         {
             this.gameObject.SetActive(false);
             GameManager.instance.LaunchFever();
+            FeverSound.Stop();
+            isPlayed = false;
             Destroy(this.gameObject, 3.5f);
         }
     }
@@ -83,5 +90,11 @@ public class AlerController : MonoBehaviour
     void FeverAlert()
     {
         Warning.gameObject.SetActive(true);
+    }
+
+    private void playFeverSound()
+    {
+        FeverSound.Play();
+        isPlayed = true;
     }
 }

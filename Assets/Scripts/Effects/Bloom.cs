@@ -35,29 +35,26 @@ public class Bloom : PostEffectsBase
     // bloom 颜色值
     public Color bloomColor = new Color(1, 1, 1, 1);
 
-    public GameObject box1;
-    public GameObject box2;
-    public PersonalGameController scorer1;
-    public JumpGameController scorer2;
+    public RobotController scorer;
+    public glowStickController color;
 
     void Awake()
     {
-        bloomShader = Shader.Find("lcl/screenEffect/Bloom");
-        scorer1 = box1.GetComponent<PersonalGameController>();
-        scorer2 = box2.GetComponent<JumpGameController>();
     }
 
     private void Update()
     {
         if (GameManager.instance.isInFever)
         {
-            bloomFactor = 1.5f;
+            bloomFactor = 1.8f;
         }
         else
         {
             //算法待改动
-            bloomFactor = (scorer2.PersonalScore+scorer1.PersonalScore)/2000;
+            bloomFactor = scorer.PersonalScore/2000;
         }
+
+        bloomColor = color.GlowColor;
     }
 
     //-------------------------------------【OnRenderImage函数】------------------------------------    

@@ -12,13 +12,13 @@ public class ActionController : MonoBehaviour
     public int PersonalScore = 0;
 
     public bool open = false;
-    private Animator anim;
+    public Animator anim;
     public Slider SpeedController;
+    public Toggle auto;
 
     public List<AudioSource> btn_sound;
     void Start()
     {
-        anim = GetComponent<Animator>();
         for (int i = 0; i < 4; i++)
             boolOfActions[i] = false;
 
@@ -27,11 +27,21 @@ public class ActionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.speed = SpeedController.value;
+        if(anim.enabled)
+            anim.speed = SpeedController.value;
+
+        if (open)
+        {
+            auto.interactable = false;
+        }
+        else
+            auto.interactable = true;
     }
 
     public void OpenTab()
     {
+        if (!anim.enabled)
+            return;
         if (!open)
         {
             anim.SetTrigger("Open");
@@ -41,6 +51,7 @@ public class ActionController : MonoBehaviour
         {
             anim.SetTrigger("Close");
             open = false;
+
         }
 
         btn_sound[0].Play();
@@ -56,5 +67,10 @@ public class ActionController : MonoBehaviour
         open = !open;
 
         PersonalScore += 5;
+    }
+
+    public void AutoOn(bool on)
+    {
+        anim.enabled = on;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class PersonalGameController : MonoBehaviour
 {
     public GameObject left,right;
-    public float PersonalScore = 0;
+    public int PersonalScore = 0;
 
     // Start is called before the first frame update
     void Start()

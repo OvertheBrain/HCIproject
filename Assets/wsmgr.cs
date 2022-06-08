@@ -66,9 +66,9 @@ public class wsmgr : MonoBehaviour {
     {
         webSocket.Close();
     }
- 
+
     #region WebSocket Event Handlers
- 
+
     /// <summary>
     /// Called when the web socket is open, and we are ready to send and receive data
     /// </summary>
@@ -77,20 +77,20 @@ public class wsmgr : MonoBehaviour {
         Send("unity_connect");
         Debug.Log("connected");
     }
- 
+
     /// <summary>
     /// Called when we received a text message from the server
     /// </summary>
     void OnMessageReceived(WebSocket ws, string message)
     {
         //Debug.Log(message);
-        PoseJson pose= JsonConvert.DeserializeObject<PoseJson>(message);
-        
+        PoseJson pose = JsonConvert.DeserializeObject<PoseJson>(message);
+
         // if(pose!=null)
-         rb.UpdatePose(pose);
+        rb.UpdatePose(pose);
         //Debug.Log(pose.RightUpperArm.x);
     }
- 
+
     /// <summary>
     /// Called when the web socket closed
     /// </summary>
@@ -100,16 +100,16 @@ public class wsmgr : MonoBehaviour {
         antiInit();
         init();
     }
- 
+
     private void OnDestroy()
     {
-        if(webSocket!=null && webSocket.IsOpen)
+        if (webSocket != null && webSocket.IsOpen)
         {
             webSocket.Close();
             antiInit();
         }
     }
- 
+
     /// <summary>
     /// Called when an error occured on client side
     /// </summary>
@@ -125,6 +125,8 @@ public class wsmgr : MonoBehaviour {
         antiInit();
         init();
     }
- 
+
     #endregion
+
+
 }

@@ -59,6 +59,7 @@
     <Compile Include="Assets\Scripts\Alert\AlertCreator.cs" />
     <Compile Include="Assets\Scripts\Alert\FeverWarning.cs" />
     <Compile Include="Assets\Scripts\Alert\JumpController.cs" />
+    <Compile Include="Assets\Scripts\BoneCharacterController.cs" />
     <Compile Include="Assets\Scripts\Effects\Bloom.cs" />
     <Compile Include="Assets\Scripts\Effects\ConfettiController.cs" />
     <Compile Include="Assets\Scripts\Effects\FrontLightsController.cs" />
@@ -71,6 +72,9 @@
     <Compile Include="Assets\Scripts\Game\PersonalGameController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\MusicGameController.cs" />
+    <Compile Include="Assets\Scripts\emotionContoller.cs" />
+    <Compile Include="Assets\Scripts\glowStickController.cs" />
+    <Compile Include="Assets\Scripts\playerCamController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\CeilingController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\FlameController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\SmokeController.cs" />

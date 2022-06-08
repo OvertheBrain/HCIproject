@@ -6,7 +6,7 @@ public class JumpGameController : MonoBehaviour
 {
     public GameObject left, right;
     public int score;
-    public float PersonalScore = 0;
+    public int PersonalScore = 0;
 
     public RobotController player;
 
@@ -39,7 +39,7 @@ public class JumpGameController : MonoBehaviour
 
             if(otherObj.gameObject == right || otherObj.gameObject == left)
             {
-                player.isJumping = true;
+                player.Jump();
             }
 
             PersonalScore += 5;
