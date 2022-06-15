@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public List<GameObject> Smokes;
@@ -25,6 +25,16 @@ public class GameManager : MonoBehaviour
     public bool isJumping = false;
     public int perOfJumpig = 0;
     public int jumpBoundary = 0;
+    private float jumpPeriod = 0;
+
+    public int perOfClapping = 0;
+    public AudioSource Applause;
+    public bool isClapping = false;
+
+    public AudioSource WarmUp;
+    public AudioSource FeverCheer;
+
+    public Text Clappers;
 
     static public GameManager instance;
     private void Awake()
@@ -59,7 +69,13 @@ public class GameManager : MonoBehaviour
             {
                 PlayJumping();
             }
+
+            jumpPeriod += Time.deltaTime;
         }
+
+        Clappers.text = perOfClapping.ToString();
+
+        
     }
 
     public void LaunchFever()
@@ -68,6 +84,7 @@ public class GameManager : MonoBehaviour
             Smoke.GetComponent<SmokeController>().SmokeLaunch();
         Fire.GetComponent<FlameController>().LaunchFlame();
         Confetti.GetComponent<ConfettiController>().LaunchConfetti();
+        FeverCheer.Play();
 
         isAlerting = false;
         isInFever = true;
@@ -77,6 +94,8 @@ public class GameManager : MonoBehaviour
         Panels.GetComponent<PanelController>().PlayAnimation();
         FrontLights.GetComponent<FrontLightsController>().PlayFever();
         StageLights.GetComponent<StageLightsController>().PlayFever();
+
+        currentHotness = 0;
     }
 
     public void Fever2Normal()
@@ -96,6 +115,7 @@ public class GameManager : MonoBehaviour
     {
         isAlerting = false;
         StageLights.GetComponent<StageLightsController>().TurnLights(false);
+        currentHotness = 0;
     }
 
     IEnumerator Opening()
@@ -113,12 +133,36 @@ public class GameManager : MonoBehaviour
 
     public void PlayOpening()
     {
+        WarmUp.Stop();
         StartCoroutine(Opening());
     }
 
     public void PlayJumping()
     {
-        Fire.GetComponent<FlameController>().LaunchFlame();
-        perOfJumpig = 0;
+        if (jumpPeriod >= 2.5f)
+        {
+            Fire.GetComponent<FlameController>().LaunchFlame();
+            perOfJumpig = 0;
+            jumpPeriod = 0;
+        }
+        else
+            return;
+    }
+
+    public void PlayClapping()
+    {
+        if (perOfClapping < 1) return;
+        if(perOfClapping >= 1 && isClapping)
+        {
+            Applause.Play();
+            Confetti.GetComponent<ConfettiController>().LaunchConfetti();
+            perOfClapping = 0;
+        }
+    }
+
+    public void PlayWarmUp()
+    {
+        StageLights.GetComponent<StageLightsController>().TurnLights(false);
+        WarmUp.Play();
     }
 }

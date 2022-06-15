@@ -71,10 +71,14 @@
     <Compile Include="Assets\Scripts\Game\JumpGameController.cs" />
     <Compile Include="Assets\Scripts\Game\PersonalGameController.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\Scripts\ModelController.cs" />
     <Compile Include="Assets\Scripts\MusicGameController.cs" />
+    <Compile Include="Assets\Scripts\adjuster.cs" />
     <Compile Include="Assets\Scripts\emotionContoller.cs" />
     <Compile Include="Assets\Scripts\glowStickController.cs" />
+    <Compile Include="Assets\Scripts\mainmenu.cs" />
     <Compile Include="Assets\Scripts\playerCamController.cs" />
+    <Compile Include="Assets\Scripts\songController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\CeilingController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\FlameController.cs" />
     <Compile Include="Assets\TirgamesAssets\Utility\Scripts\SmokeController.cs" />
@@ -252,6 +256,7 @@
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\video_chroma\libgrey_yuv_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\stream_filter\libprefetch_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\demux\libdemux_stl_plugin.dll" />
+    <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Extended.shader" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\video_output\libdirectdraw_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\packetizer\libpacketizer_mlp_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\video_filter\libdeinterlace_plugin.dll" />
@@ -431,6 +436,7 @@
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\audio_filter\libscaletempo_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\misc\libexport_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\codec\libqsv_plugin.dll" />
+    <None Include="Assets\BOXOPHOBIC\Skybox Cubemap Extended\Core\Shaders\Skybox Cubemap Blend.shader" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86\plugins\video_output\libwingdi_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\video_chroma\libi420_rgb_plugin.dll" />
     <None Include="Assets\UniversalMediaPlayer\Plugins\Win\x86_64\plugins\stream_filter\libcache_block_plugin.dll" />
@@ -1357,6 +1363,18 @@
     <ProjectReference Include="BestHTTP.csproj">
       <Project>{AB15E6F2-600A-22E8-64DF-1F5A58D2975F}</Project>
       <Name>BestHTTP</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Scripts.csproj">
+      <Project>{23ADD9F4-B1F5-76BE-21A7-BDACA935D3B8}</Project>
+      <Name>Boxophobic.Utils.Scripts</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.SkyboxCubemapExtended.Editor.csproj">
+      <Project>{A4A25458-A62B-48FB-867C-98B5FB37A075}</Project>
+      <Name>Boxophobic.SkyboxCubemapExtended.Editor</Name>
+    </ProjectReference>
+    <ProjectReference Include="Boxophobic.Utils.Editor.csproj">
+      <Project>{67470CEB-59AB-E2ED-DBBA-0757C0D8053A}</Project>
+      <Name>Boxophobic.Utils.Editor</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

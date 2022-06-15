@@ -16,6 +16,8 @@ public class ActionController : MonoBehaviour
     public Slider SpeedController;
     public Toggle auto;
 
+    public bool isClapping = false;
+
     public List<AudioSource> btn_sound;
     void Start()
     {
@@ -35,11 +37,16 @@ public class ActionController : MonoBehaviour
             auto.interactable = false;
         }
         else
+        {
             auto.interactable = true;
+        }
+
+        GameManager.instance.isClapping = isClapping;
     }
 
     public void OpenTab()
     {
+        isClapping = false;
         if (!anim.enabled)
             return;
         if (!open)
@@ -63,6 +70,12 @@ public class ActionController : MonoBehaviour
 
         anim.SetTrigger(act.ToString());
         btn_sound[1].Play();
+
+        if(actionId == 3)
+        {
+            isClapping = true;
+            GameManager.instance.perOfClapping++;
+        }
 
         open = !open;
 

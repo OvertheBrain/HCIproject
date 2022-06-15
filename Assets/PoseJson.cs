@@ -6,6 +6,7 @@ using UnityEngine;
 public class PoseJson
 {
     public PosJson Head,Spine,RightUpperArm,RightLowerArm,LeftUpperArm,LeftLowerArm;
+    public MouthJson MouthShape;
 
 }
 
@@ -13,5 +14,12 @@ public class PoseJson
 public class PosJson
 {
     public float x,y,z;
+
+}
+
+[System.Serializable]
+public class MouthJson
+{
+    public float A,E,I,O,U;
 
 }

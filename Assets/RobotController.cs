@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Newtonsoft.Json;
+using UnityEngine.UI;
 
 public class RobotController : MonoBehaviour
 {
@@ -21,6 +22,11 @@ public class RobotController : MonoBehaviour
     public JumpGameController scorer2;
     public ActionController score3;
 
+    AudioSource au;
+    public AudioClip[] cheer;
+
+    public Text ScoreBoard;
+
     //public bool isJumping = false;
     //public bool ground = true;
     //private float mJumpSpeed = 100f;
@@ -28,10 +34,10 @@ public class RobotController : MonoBehaviour
 
     void Start(){
         foreach(GameObject x in c1_group){
-            x.GetComponent<MeshRenderer>().materials[0].SetColor("_Color",col1);
+            x.GetComponent<MeshRenderer>().materials[0].SetColor("_Color",adjuster.color1);
         }
         foreach(GameObject x in c2_group){
-            x.GetComponent<MeshRenderer>().materials[0].SetColor("_Color",col2);
+            x.GetComponent<MeshRenderer>().materials[0].SetColor("_Color",adjuster.color2);
         }
         ru=RightUpperArm.transform.localRotation;
         rl=RightLowerArm.transform.localRotation;
@@ -39,6 +45,8 @@ public class RobotController : MonoBehaviour
         ll=LeftLowerArm.transform.localRotation;
         hd=Head.transform.localRotation;
         y0=transform.localPosition.y;
+
+        au=GetComponent<AudioSource>();
 
         score3 = GetComponent<ActionController>();
     }
@@ -62,8 +70,16 @@ public class RobotController : MonoBehaviour
         LeftUpperArm.transform.localRotation=EulerVariation(pose.LeftUpperArm,lu);
         LeftLowerArm.transform.localRotation=EulerVariation(pose.LeftLowerArm,ll);
          Head.transform.localRotation=hd*Quaternion.Euler(pose.Head.x*0.7f*motionscale,pose.Head.y*0.7f*motionscale,pose.Head.z*0.7f*motionscale);
-
+        
+        
+        if(pose.MouthShape.A>=1){
+            Debug.Log(pose.MouthShape.A);
+            if(!au.isPlaying)
+            au.PlayOneShot(cheer[Random.Range(0,3)]);
+        }
     }
+
+    
 
     void Update(){
 
@@ -84,7 +100,10 @@ public class RobotController : MonoBehaviour
         updateMovement();
 
         PersonalScore = scorer1.PersonalScore + scorer2.PersonalScore + score3.PersonalScore;
+        ScoreBoard.text = PersonalScore.ToString();
     }
+
+    
 
     void updateMovement(){
         //移动
@@ -105,6 +124,7 @@ public class RobotController : MonoBehaviour
 
     //外部可以直接调用Jump
     public void Jump(){
+        if(jumpingLerp>=2)
         jumpingLerp=0;
     }
 

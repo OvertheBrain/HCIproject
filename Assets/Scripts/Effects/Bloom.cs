@@ -31,7 +31,7 @@ public class Bloom : PostEffectsBase
     public float luminanceThreshold = 0.6f;
     // bloom 强度
     [Range(0.0f, 5.0f)]
-    public float bloomFactor = 1;
+    public float bloomFactor = 0;
     // bloom 颜色值
     public Color bloomColor = new Color(1, 1, 1, 1);
 
@@ -46,7 +46,7 @@ public class Bloom : PostEffectsBase
     {
         if (GameManager.instance.isInFever)
         {
-            bloomFactor = 1.8f;
+            bloomFactor = 1.6f;
         }
         else
         {

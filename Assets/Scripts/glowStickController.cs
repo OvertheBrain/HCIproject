@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class glowStickController : MonoBehaviour
 {
@@ -13,12 +13,17 @@ public class glowStickController : MonoBehaviour
 
     public Color GlowColor;
 
+    public Button control;
+
+    private Light glowLight;
+
     float ctime;
 
     void Start()
     {
         colorId=colors.Length;
         colorful=true;
+        glowLight = GetComponentInChildren<Light>();
     }
 
      public static Color ConvertHsvToRgb(double h, double s, double v, float alpha)
@@ -105,15 +110,23 @@ public class glowStickController : MonoBehaviour
             Color col=ConvertHsvToRgb(h,1,1,1);
             GlowColor = col;
             GetComponent<Renderer>().material.SetColor("_EmissionColor", GlowColor);
+            if(control!=null)
+            control.image.color=GlowColor;
         }
+
+        glowLight.color = GlowColor;
         
     }
 
+    public void SetColorful(bool on)
+    {
+        colorful = on;
+    }
     public void SwitchColor(){
         colorId++;
         if(colorId>colors.Length)colorId=0;
 
-        GlowColor = colors[colorId];
+        
 
         if(colorId==colors.Length){
             colorful=true;
@@ -121,7 +134,10 @@ public class glowStickController : MonoBehaviour
         }
         else
         {
+            GlowColor = colors[colorId];
             colorful=false;
+            if(control!=null)
+            control.image.color=new Color(GlowColor.r,GlowColor.g,GlowColor.b,1);
             GetComponent<Renderer>().material.SetColor("_EmissionColor", GlowColor);
         } 
 

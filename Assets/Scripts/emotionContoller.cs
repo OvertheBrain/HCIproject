@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class emotionContoller : MonoBehaviour
@@ -10,6 +11,11 @@ public class emotionContoller : MonoBehaviour
     public Sprite[] sprites;
     float rotLerp,yLerp;
     float x0,y0,z0;
+
+    public Dropdown dropdown;
+    public Image butimg;
+
+    public AudioSource btn_sound;
     
     void Start()
     {
@@ -22,6 +28,7 @@ public class emotionContoller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         Vector3 rot=new Vector3(0,0,1f);
         transform.Rotate(rot*Mathf.Cos(rotLerp));
         rotLerp+=Time.deltaTime*10;
@@ -65,5 +72,18 @@ public class emotionContoller : MonoBehaviour
     public void Launch(int id){
         gameObject.GetComponent<SpriteRenderer>().sprite=sprites[id];
         yLerp=0;
+    }
+
+    public void OnSwitch(){
+        if(dropdown==null||butimg==null) return;
+        int id= dropdown.value;
+        butimg.sprite =sprites[id];
+    }
+
+    public void ButtonLaunch(){
+        if(dropdown==null) return;
+        int id= dropdown.value;
+        btn_sound.Play();
+        Launch(id);
     }
 }

@@ -4893,14 +4893,14 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ac3c20a005fda9e449fcdd8e079b7b37, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.41
+  m_Volume: 0.8
   m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1.45
+  Priority: 89
+  DopplerLevel: 1.2
   MinDistance: 15
   MaxDistance: 100
   Pan2D: 0
